@@ -7,7 +7,7 @@ const {connectToDB}=require('./utils/db');
 var cors = require('cors');
 const errorHandler=require('./middleware/errorHandler');
 const app = express();
-app.use(cors({origin: 'http://localhost:19012'}));
+app.use(cors({origin: '*'}));
 app.use(express.json());
 app.use('/api',routes);
 app.use(errorHandler);
@@ -17,6 +17,7 @@ connectToDB().then(()=>{}).catch(e=>{
     process.exit(1)
 });
 
-app.listen(3032,()=>{
+app.listen(10022,()=>{
     console.log("listening");
 });
+
