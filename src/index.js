@@ -17,7 +17,7 @@ connectToDB().then(()=>{}).catch(e=>{
     process.exit(1)
 });
 
-app.listen(10022,()=>{
+app.listen(12345,()=>{
     console.log("listening");
 });
 
