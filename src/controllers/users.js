@@ -1,21 +1,25 @@
+/** @format */
 
-const User =require('../models/user')
-const {generateToken}=require('../utils/jwt')
+const User = require("../models/user");
+const { generateToken } = require("../utils/jwt");
 
-async function addUser(req,res){
-    const {username,password,role}=req.body;
-    const user =new User({
-        username,
-        password,
-        role
-    });
-    await user.hashPassword();
-    await user.save();
-    const token=generateToken(user._id);
-    return res.json({username,token});
+async function addUser(req, res) {
+  const { email, password, role, fullName, gender, dob, staffId } = req.body;
+  const user = new User({
+    email,
+    password,
+    role,
+    fullName,
+    gender,
+    dob,
+    staffId
+  });
+  await user.hashPassword();
+  await user.save();
+  const token = generateToken(user._id);
+  return res.json({ email, token });
 }
 
-
-module.exports={
-    addUser,
-}
+module.exports = {
+  addUser
+};

@@ -1,20 +1,22 @@
-const jwt=require('jsonwebtoken');
+/** @format */
 
-function generateToken(id){
-    const token=jwt.sign({id},process.env.JWT_KEY,{
-        expiresIn:'1d'
-    });
-    return token;
+const jwt = require("jsonwebtoken");
+
+function generateToken(id) {
+  const token = jwt.sign({ id }, process.env.JWT_KEY, {
+    expiresIn: "1d"
+  });
+  return token;
 }
 
-function validateToken(token){
-    let decoded;
-    try{
-        decoded=jwt.verify(token,process.env.JWT_KEY);
-    }catch(e){
-        return null;
-    }
-    return decoded;
+function validateToken(token) {
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_KEY);
+  } catch (e) {
+    return null;
+  }
+  return decoded;
 }
 
-module.exports={validateToken,generateToken};
+module.exports = { validateToken, generateToken };
