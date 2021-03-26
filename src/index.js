@@ -21,6 +21,6 @@ connectToDB()
     process.exit(1);
   });
 
-app.listen(12347, () => {
+app.listen(12345, () => {
   console.log("listening");
 });
