@@ -30,7 +30,6 @@ const schema = new mongoose.Schema({
   criteria: [
     {
       type: String,
-      type: String,
     },
   ],
 });
