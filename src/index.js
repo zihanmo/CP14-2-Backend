@@ -16,7 +16,7 @@ app.use(errorHandler);
 
 connectToDB()
   .then(() => {})
-  .catch(e => {
+  .catch((e) => {
     console.error(e);
     process.exit(1);
   });
