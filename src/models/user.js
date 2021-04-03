@@ -1,5 +1,7 @@
 /** @format */
-
+const Manager = require("./manager");
+const Patient = require("./patient");
+const Worker = require("./worker");
 const mongoose = require("mongoose");
 const Joi = require("@hapi/joi");
 
@@ -44,6 +46,47 @@ schema.methods.validatePassword = async function(password) {
   const validatePassword = await bcrypt.compare(password, this.password);
   return validatePassword;
 };
+
+schema.pre("save", function() {
+  const role = this.role;
+  const userId = this._id;
+  const name = this.fullName;
+  const gender = this.gender;
+  const dob = this.dob;
+  const staffId = this.staffId;
+  const email = this.email;
+  switch (role) {
+    case "Participant":
+      const newPatient = new Patient({
+        user: userId,
+        name,
+        gender,
+        email
+      });
+      newPatient.save();
+      break;
+    case "Health Care Workers":
+      const newWorker = new Worker({
+        user: userId,
+        name,
+        gender,
+        email,
+        staffId
+      });
+      newWorker.save();
+      break;
+    case "Admin":
+      const newAdmin = new Manager({
+        user: userId,
+        name,
+        gender,
+        email,
+        dob
+      });
+      newAdmin.save();
+      break;
+  }
+});
 
 const model = mongoose.model("User", schema);
 
