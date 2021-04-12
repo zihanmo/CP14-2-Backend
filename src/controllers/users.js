@@ -4,7 +4,21 @@ const User = require("../models/user");
 const { generateToken } = require("../utils/jwt");
 
 async function addUser(req, res) {
-  const { email, password, role, fullName, gender, dob, staffId } = req.body;
+  const {
+    email,
+    password,
+    role,
+    fullName,
+    gender,
+    dob,
+    staffId,
+    healthy,
+    english,
+    isPragnent,
+    isSmoking,
+    isLactating,
+    isPlanning
+  } = req.body;
   const existingUser = await User.findOne({ email }).exec();
   if (existingUser) {
     return res.status(401).json("email is already taken");
@@ -16,7 +30,13 @@ async function addUser(req, res) {
     fullName,
     gender,
     dob,
-    staffId
+    staffId,
+    healthy,
+    english,
+    isPragnent,
+    isSmoking,
+    isLactating,
+    isPlanning
   });
   await user.hashPassword();
   await user.save();

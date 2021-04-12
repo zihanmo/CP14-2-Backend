@@ -35,6 +35,34 @@ const schema = new mongoose.Schema({
   staffId: {
     type: String,
     required: false
+  },
+  healthy: {
+    type: String,
+    required: false
+  },
+  english: {
+    type: String,
+    required: false
+  },
+  isPragnent: {
+    type: String,
+    required: false
+  },
+  isSmoking: {
+    type: String,
+    required: false
+  },
+  isLactating: {
+    type: String,
+    required: false
+  },
+  isPlanning: {
+    type: String,
+    required: false
+  },
+  healthy: {
+    type: String,
+    required: false
   }
 });
 
