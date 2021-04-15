@@ -4,7 +4,7 @@ const Question = require("../models/question");
 
 async function addQuestion(req, res) {
   const { name } = req.body;
-  const question = new question({
+  const question = new Question({
     name
   });
   await question.save();
