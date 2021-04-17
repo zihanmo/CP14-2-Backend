@@ -7,6 +7,17 @@ const schema = new mongoose.Schema({
     type: String,
     required: false,
   },
+
+  approvalNumber: {
+    type: String,
+    required: false,
+  },
+
+  fileUpload: {
+    type: String,
+    required: false,
+  },
+
   description: {
     type: String,
     required: false,
@@ -27,7 +38,13 @@ const schema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  criteria: [
+  InclusionCriteria: [
+    {
+      type: String,
+    },
+  ],
+
+  ExclusionCriteria: [
     {
       type: String,
     },

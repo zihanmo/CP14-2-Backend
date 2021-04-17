@@ -9,7 +9,10 @@ async function addProject(req, res) {
     subjectNo,
     duration,
     date,
-    criteria,
+    fileUpload,
+    approvalNumber,
+    InclusionCriteria,
+    ExclusionCriteria,
   } = req.body;
   const project = new Project({
     title,
@@ -18,7 +21,10 @@ async function addProject(req, res) {
     subjectNo,
     duration,
     date,
-    criteria,
+    fileUpload,
+    approvalNumber,
+    InclusionCriteria,
+    ExclusionCriteria,
   });
   await project.save();
   return res.json({ project });
