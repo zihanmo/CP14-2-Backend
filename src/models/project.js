@@ -1,54 +1,81 @@
 /** @format */
 
 const mongoose = require("mongoose");
+const Question = require("./question");
 
 const schema = new mongoose.Schema({
   title: {
     type: String,
-    required: false,
+    required: false
   },
 
   approvalNumber: {
     type: String,
-    required: false,
+    required: false
   },
 
   fileUpload: {
     type: String,
-    required: false,
+    required: false
   },
 
   description: {
     type: String,
-    required: false,
+    required: false
   },
   location: {
     type: String,
-    required: false,
+    required: false
   },
   subjectNo: {
     type: String,
-    required: false,
+    required: false
   },
   duration: {
     type: String,
-    required: false,
+    required: false
   },
   date: {
     type: String,
-    required: false,
+    required: false
   },
   InclusionCriteria: [
     {
-      type: String,
-    },
+      type: String
+    }
   ],
 
   ExclusionCriteria: [
     {
-      type: String,
-    },
-  ],
+      type: String
+    }
+  ]
+});
+
+schema.pre("save", function() {
+  const projectId = this._id;
+  this.InclusionCriteria.map(item => {
+    let splitarr = item.split(" - ");
+    const NewQuestion = new Question({
+      general: splitarr[0] === "General" ? true : false,
+      worker: splitarr[0] === "General" ? false : true,
+      inclusion: true,
+      name: splitarr[1],
+      project: projectId
+    });
+    NewQuestion.save();
+  });
+  this.ExclusionCriteria.map(item => {
+    let splitarr = item.split(" - ");
+    const NewQuestion = new Question({
+      general: splitarr[0] === "General" ? true : false,
+      worker: splitarr[0] === "General" ? false : true,
+      inclusion: false,
+      name: splitarr[1],
+      project: projectId
+    });
+    NewQuestion.save();
+  });
 });
 
 const model = mongoose.model("Project", schema);
