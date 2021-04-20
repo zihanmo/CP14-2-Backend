@@ -55,23 +55,23 @@ const schema = new mongoose.Schema({
 schema.pre("save", function() {
   const projectId = this._id;
   this.InclusionCriteria.map(item => {
-    let splitarr = item.split(" - ");
+    let splitArr = item.split(" - ");
     const NewQuestion = new Question({
-      general: splitarr[0] === "General" ? true : false,
-      worker: splitarr[0] === "General" ? false : true,
+      general: splitArr[0] === "General" ? true : false,
+      worker: splitArr[0] === "Worker Need" ? true : false,
       inclusion: true,
-      name: splitarr[1],
+      name: splitArr[1],
       project: projectId
     });
     NewQuestion.save();
   });
   this.ExclusionCriteria.map(item => {
-    let splitarr = item.split(" - ");
+    let splitArr = item.split(" - ");
     const NewQuestion = new Question({
-      general: splitarr[0] === "General" ? true : false,
-      worker: splitarr[0] === "General" ? false : true,
+      general: splitArr[0] === "General" ? true : false,
+      worker: splitArr[0] === "Worker Need" ? true : false,
       inclusion: false,
-      name: splitarr[1],
+      name: splitArr[1],
       project: projectId
     });
     NewQuestion.save();
