@@ -3,6 +3,7 @@ const Project = require("../models/project");
 
 async function addProject(req, res) {
   const {
+    userId,
     title,
     description,
     location,
@@ -11,10 +12,12 @@ async function addProject(req, res) {
     date,
     fileUpload,
     approvalNumber,
+    governance,
     InclusionCriteria,
     ExclusionCriteria,
   } = req.body;
   const project = new Project({
+    userId,
     title,
     description,
     location,
@@ -23,6 +26,7 @@ async function addProject(req, res) {
     date,
     fileUpload,
     approvalNumber,
+    governance,
     InclusionCriteria,
     ExclusionCriteria,
   });
