@@ -14,6 +14,11 @@ const schema = new mongoose.Schema({
     required: false,
   },
 
+  state: {
+    type: String,
+    required: false,
+  },
+
   approvalNumber: {
     type: String,
     required: false,
