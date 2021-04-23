@@ -28,7 +28,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: false,
   },
-
+  createdDate: {
+    type: String,
+    required: false,
+  },
   fileUpload: {
     type: String,
     required: false,
