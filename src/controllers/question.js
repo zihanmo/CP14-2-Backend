@@ -12,8 +12,6 @@ async function addQuestion(req, res) {
 }
 
 async function getAllQuestion(req, res) {
-  const { id } = req.params;
-  console.log(id);
   const question = await Question.find();
   return res.json(question);
 }

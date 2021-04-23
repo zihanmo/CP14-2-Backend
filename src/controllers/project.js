@@ -45,7 +45,18 @@ async function getProjects(req, res) {
   return res.json(projects);
 }
 
+async function deleteProject(req, res) {
+  const { id } = req.params;
+  const project = await Project.findByIdAndDelete(id);
+  if (!project) {
+    return res.status(404).json("project not found");
+  }
+
+  return res.json(project);
+}
+
 module.exports = {
   addProject,
   getProjects,
+  deleteProject,
 };
