@@ -38,6 +38,14 @@ async function addProject(req, res) {
   return res.json({ project });
 }
 
+async function getProjects(req, res) {
+  const { id } = req.params;
+
+  const projects = await Project.find({ userId: id });
+  return res.json(projects);
+}
+
 module.exports = {
   addProject,
+  getProjects,
 };
