@@ -12,11 +12,12 @@ async function loginUser(req, res) {
   }
   const validPassword = await existingUser.validatePassword(password);
   const userRole = await existingUser.role;
+  const userId = await existingUser._id;
   if (!validPassword) {
     return res.status(401).json("Invalid username or password");
   }
   const token = generateToken(existingUser._id);
-  return res.json({ email, token, userRole });
+  return res.json({ email, token, userRole, userId });
 }
 
 module.exports = {
