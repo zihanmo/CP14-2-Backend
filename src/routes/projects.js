@@ -8,10 +8,12 @@ const {
   addProject,
   getProjects,
   getProjectsById,
-  deleteProject
+  deleteProject,
+  updateState,
 } = require("../controllers/project");
 
 router.post("/", addProject);
+router.put("/state/:id", updateState);
 router.get("/:id", getProjectsById);
 router.delete("/:id", deleteProject);
 router.get("/", getProjects);
