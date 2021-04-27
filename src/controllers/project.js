@@ -16,7 +16,13 @@ async function addProject(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
-    ExclusionCriteria
+    ExclusionCriteria,
+    isPragnent,
+    isSmoking,
+    isLactating,
+    isPlaningPragnent,
+    gender,
+    ageGroup,
   } = req.body;
   const project = new Project({
     userId,
@@ -32,7 +38,13 @@ async function addProject(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
-    ExclusionCriteria
+    ExclusionCriteria,
+    isPragnent,
+    isSmoking,
+    isLactating,
+    isPlaningPragnent,
+    gender,
+    ageGroup,
   });
   await project.save();
   return res.json({ project });
@@ -65,14 +77,18 @@ async function deleteProject(req, res) {
   return res.json(project);
 }
 
-async function updateState(req,res){
-  const{id:projectId}=req.params;
-  const {state}=req.body;
-  const projectState =await Project.findByIdAndUpdate(projectId,{
-      state
-  },{new:true});
-  if(!projectState){
-      return res.status(404).send();
+async function updateState(req, res) {
+  const { id: projectId } = req.params;
+  const { state } = req.body;
+  const projectState = await Project.findByIdAndUpdate(
+    projectId,
+    {
+      state,
+    },
+    { new: true }
+  );
+  if (!projectState) {
+    return res.status(404).send();
   }
   return res.json(projectState);
 }
@@ -92,5 +108,5 @@ module.exports = {
   getProjects,
   getProjectsById,
   deleteProject,
-  updateState
+  updateState,
 };

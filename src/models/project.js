@@ -68,6 +68,34 @@ const schema = new mongoose.Schema({
       type: String,
     },
   ],
+
+  isPragnent: {
+    type: Boolean,
+  },
+
+  isSmoking: {
+    type: Boolean,
+  },
+
+  isLactating: {
+    type: Boolean,
+  },
+
+  isLactating: {
+    type: Boolean,
+  },
+
+  isPlaningPragnent: {
+    type: Boolean,
+  },
+
+  gender: {
+    type: String,
+  },
+
+  ageGroup: {
+    type: String,
+  },
 });
 
 schema.pre("save", function () {
