@@ -16,7 +16,6 @@ async function addProject(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
-<<<<<<< HEAD
     ExclusionCriteria,
     isPragnent,
     isSmoking,
@@ -24,9 +23,6 @@ async function addProject(req, res) {
     isPlaningPragnent,
     gender,
     ageGroup,
-=======
-    ExclusionCriteria
->>>>>>> main
   } = req.body;
   const project = new Project({
     userId,
@@ -42,7 +38,6 @@ async function addProject(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
-<<<<<<< HEAD
     ExclusionCriteria,
     isPragnent,
     isSmoking,
@@ -50,9 +45,6 @@ async function addProject(req, res) {
     isPlaningPragnent,
     gender,
     ageGroup,
-=======
-    ExclusionCriteria
->>>>>>> main
   });
   await project.save();
   return res.json({ project });
@@ -99,5 +91,5 @@ module.exports = {
   addProject,
   getProjects,
   getProjectsById,
-  deleteProject
+  deleteProject,
 };
