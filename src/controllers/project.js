@@ -17,6 +17,12 @@ async function addProject(req, res) {
     governance,
     InclusionCriteria,
     ExclusionCriteria,
+    isPragnent,
+    isSmoking,
+    isLactating,
+    isPlaningPragnent,
+    gender,
+    ageGroup,
   } = req.body;
   const project = new Project({
     userId,
@@ -33,6 +39,12 @@ async function addProject(req, res) {
     governance,
     InclusionCriteria,
     ExclusionCriteria,
+    isPragnent,
+    isSmoking,
+    isLactating,
+    isPlaningPragnent,
+    gender,
+    ageGroup,
   });
   await project.save();
   return res.json({ project });
