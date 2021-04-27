@@ -65,6 +65,18 @@ async function deleteProject(req, res) {
   return res.json(project);
 }
 
+async function updateState(req,res){
+  const{id:projectId}=req.params;
+  const {state}=req.body;
+  const projectState =await Project.findByIdAndUpdate(projectId,{
+      state
+  },{new:true});
+  if(!projectState){
+      return res.status(404).send();
+  }
+  return res.json(projectState);
+}
+
 // async function getProjectInfo(req, res) {
 //   const { id } = req.params;
 //   const project = await Project.findById(id);
@@ -79,5 +91,6 @@ module.exports = {
   addProject,
   getProjects,
   getProjectsById,
-  deleteProject
+  deleteProject,
+  updateState
 };
