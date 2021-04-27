@@ -16,6 +16,7 @@ async function addProject(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
+<<<<<<< HEAD
     ExclusionCriteria,
     isPragnent,
     isSmoking,
@@ -23,6 +24,9 @@ async function addProject(req, res) {
     isPlaningPragnent,
     gender,
     ageGroup,
+=======
+    ExclusionCriteria
+>>>>>>> main
   } = req.body;
   const project = new Project({
     userId,
@@ -38,6 +42,7 @@ async function addProject(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
+<<<<<<< HEAD
     ExclusionCriteria,
     isPragnent,
     isSmoking,
@@ -45,16 +50,29 @@ async function addProject(req, res) {
     isPlaningPragnent,
     gender,
     ageGroup,
+=======
+    ExclusionCriteria
+>>>>>>> main
   });
   await project.save();
   return res.json({ project });
 }
 
-async function getProjects(req, res) {
+async function getProjectsById(req, res) {
   const { id } = req.params;
-
-  const projects = await Project.find({ userId: id });
+  const projects = await Project.findById(id);
   return res.json(projects);
+}
+
+async function getProjects(req, res) {
+  const { user } = req.query;
+  if (user) {
+    const projects = await Project.find({ userId: user });
+    return res.json(projects);
+  } else {
+    const project = await Project.find();
+    return res.json(project);
+  }
 }
 
 async function deleteProject(req, res) {
@@ -67,25 +85,19 @@ async function deleteProject(req, res) {
   return res.json(project);
 }
 
-async function getAllProjects(req, res) {
-  const project = await Project.find();
-  return res.json(project);
-}
+// async function getProjectInfo(req, res) {
+//   const { id } = req.params;
+//   const project = await Project.findById(id);
+//   if (!project) {
+//     return res.status(404).json("project not found");
+//   }
 
-async function getProjectInfo(req, res) {
-  const { id } = req.params;
-  const project = await Project.findById(id);
-  if (!project) {
-    return res.status(404).json("project not found");
-  }
-
-  return res.json(project);
-}
+//   return res.json(project);
+// }
 
 module.exports = {
   addProject,
   getProjects,
-  deleteProject,
-  getAllProjects,
-  getProjectInfo
+  getProjectsById,
+  deleteProject
 };
