@@ -14,10 +14,10 @@ async function addUser(req, res) {
     staffId,
     healthy,
     english,
-    isPragnent,
+    isPragnant,
     isSmoking,
     isLactating,
-    isPlanning
+    isPlanning,
   } = req.body;
   const existingUser = await User.findOne({ email }).exec();
   if (existingUser) {
@@ -33,10 +33,10 @@ async function addUser(req, res) {
     staffId,
     healthy,
     english,
-    isPragnent,
+    isPragnant,
     isSmoking,
     isLactating,
-    isPlanning
+    isPlanning,
   });
   await user.hashPassword();
   await user.save();
@@ -45,5 +45,5 @@ async function addUser(req, res) {
 }
 
 module.exports = {
-  addUser
+  addUser,
 };
