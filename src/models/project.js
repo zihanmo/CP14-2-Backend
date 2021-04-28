@@ -77,6 +77,13 @@ const schema = new mongoose.Schema({
     type: Boolean,
   },
 
+  needEnglish: {
+    type: Boolean,
+  },
+  needHealth: {
+    type: Boolean,
+  },
+
   isLactating: {
     type: Boolean,
   },
