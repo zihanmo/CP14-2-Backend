@@ -45,19 +45,19 @@ const schema = new mongoose.Schema({
     required: false
   },
   isPragnent: {
-    type: String,
+    type: Boolean,
     required: false
   },
   isSmoking: {
-    type: String,
+    type: Boolean,
     required: false
   },
   isLactating: {
-    type: String,
+    type: Boolean,
     required: false
   },
   isPlanning: {
-    type: String,
+    type: Boolean,
     required: false
   },
   healthy: {
