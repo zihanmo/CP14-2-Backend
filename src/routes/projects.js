@@ -1,3 +1,5 @@
+/** @format */
+
 const express = require("express");
 
 const router = express.Router();
@@ -5,14 +7,15 @@ const router = express.Router();
 const {
   addProject,
   getProjects,
+  getProjectsById,
   deleteProject,
-  getAllProjects,
-  getProjectInfo
+  updateState,
 } = require("../controllers/project");
 
 router.post("/", addProject);
-router.get("/:id", getProjects);
+router.put("/state/:id", updateState);
+router.get("/:id", getProjectsById);
 router.delete("/:id", deleteProject);
-router.get("/", getAllProjects);
-router.get("/:pId", getProjectInfo);
+router.get("/", getProjects);
+router.put("/:id", updateState);
 module.exports = router;

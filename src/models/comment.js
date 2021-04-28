@@ -1,20 +1,14 @@
 /** @format */
 
 const mongoose = require("mongoose");
-const Question = require("./question");
 
 const schema = new mongoose.Schema({
-  userId: {
+  projectId: {
     type: String,
     required: false,
   },
 
   title: {
-    type: String,
-    required: false,
-  },
-
-  state: {
     type: String,
     required: false,
   },
@@ -28,11 +22,8 @@ const schema = new mongoose.Schema({
     type: String,
     required: false,
   },
+
   createdDate: {
-    type: String,
-    required: false,
-  },
-  fileUpload: {
     type: String,
     required: false,
   },
@@ -41,61 +32,36 @@ const schema = new mongoose.Schema({
     type: String,
     required: false,
   },
+
   location: {
     type: String,
     required: false,
   },
+
   subjectNo: {
     type: String,
     required: false,
   },
+  
   duration: {
     type: String,
     required: false,
   },
+  
   date: {
     type: String,
     required: false,
   },
-  InclusionCriteria: [
-    {
-      type: String,
-    },
-  ],
 
-  ExclusionCriteria: [
-    {
-      type: String,
-    },
-  ],
-
-  isPragnent: {
-    type: Boolean,
-  },
-
-  isSmoking: {
-    type: Boolean,
-  },
-
-  isLactating: {
-    type: Boolean,
-  },
-
-  isLactating: {
-    type: Boolean,
-  },
-
-  isPlaningPragnent: {
-    type: Boolean,
-  },
-
-  gender: {
+  InclusionCriteria: {
     type: String,
+    required: false,
   },
 
-  ageGroup: {
+  ExclusionCriteria: {
     type: String,
-  },
+    required: false,
+  }
 });
 
 schema.pre("save", function () {
@@ -124,6 +90,6 @@ schema.pre("save", function () {
   });
 });
 
-const model = mongoose.model("Project", schema);
+const model = mongoose.model("Comment", schema);
 
 module.exports = model;
