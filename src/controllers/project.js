@@ -93,6 +93,15 @@ async function updateState(req, res) {
   return res.json(projectState);
 }
 
+async function findProjectSet(req, res) {
+  const { id } = req.params;
+  const idList = id.split(",");
+
+  const records = await Project.find({ _id: { $in: idList } });
+
+  return res.json(records);
+}
+
 // async function getProjectInfo(req, res) {
 //   const { id } = req.params;
 //   const project = await Project.findById(id);
@@ -109,4 +118,5 @@ module.exports = {
   getProjectsById,
   deleteProject,
   updateState,
+  findProjectSet,
 };

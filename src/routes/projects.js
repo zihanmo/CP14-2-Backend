@@ -10,10 +10,11 @@ const {
   getProjectsById,
   deleteProject,
   updateState,
+  findProjectSet,
 } = require("../controllers/project");
 
 router.post("/", addProject);
-router.put("/state/:id", updateState);
+router.get("/set/:id", findProjectSet);
 router.get("/:id", getProjectsById);
 router.delete("/:id", deleteProject);
 router.get("/", getProjects);
