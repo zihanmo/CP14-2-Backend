@@ -3,6 +3,16 @@
 const User = require("../models/user");
 const { generateToken } = require("../utils/jwt");
 
+async function getUserInfo(req, res) {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json("User not found");
+    }
+  
+    return res.json(user);
+  }
+
 async function addUser(req, res) {
   const {
     email,
@@ -45,5 +55,6 @@ async function addUser(req, res) {
 }
 
 module.exports = {
-  addUser
+  addUser,
+  getUserInfo
 };
