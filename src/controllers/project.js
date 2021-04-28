@@ -99,6 +99,66 @@ async function updateState(req, res) {
   return res.json(projectState);
 }
 
+async function updateAll(req, res) {
+  const { id: projectId } = req.params;
+  const {
+    title,
+    description,
+    location,
+    state,
+    subjectNo,
+    duration,
+    needEnglish,
+    needHealth,
+    date,
+    fileUpload,
+    workerNeed,
+    createdDate,
+    approvalNumber,
+    governance,
+    InclusionCriteria,
+    ExclusionCriteria,
+    isPragnant,
+    isSmoking,
+    isLactating,
+    isPlaningPragnant,
+    gender,
+    ageGroup,
+  } = req.body;
+  const projectState = await Project.findByIdAndUpdate(
+    projectId,
+    {
+      title,
+      description,
+      location,
+      state,
+      subjectNo,
+      duration,
+      needEnglish,
+      needHealth,
+      date,
+      fileUpload,
+      workerNeed,
+      createdDate,
+      approvalNumber,
+      governance,
+      InclusionCriteria,
+      ExclusionCriteria,
+      isPragnant,
+      isSmoking,
+      isLactating,
+      isPlaningPragnant,
+      gender,
+      ageGroup,
+    },
+    { new: true }
+  );
+  if (!projectState) {
+    return res.status(404).send();
+  }
+  return res.json(projectState);
+}
+
 async function findProjectSet(req, res) {
   const { id } = req.params;
   const idList = id.split(",");
@@ -125,4 +185,5 @@ module.exports = {
   deleteProject,
   updateState,
   findProjectSet,
+  updateAll,
 };
