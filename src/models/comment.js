@@ -64,32 +64,6 @@ const schema = new mongoose.Schema({
   }
 });
 
-schema.pre("save", function () {
-  const projectId = this._id;
-  this.InclusionCriteria.map((item) => {
-    let splitArr = item.split(" - ");
-    const NewQuestion = new Question({
-      general: splitArr[0] === "General" ? true : false,
-      worker: splitArr[0] === "Worker Need" ? true : false,
-      inclusion: true,
-      name: splitArr[1],
-      project: projectId,
-    });
-    NewQuestion.save();
-  });
-  this.ExclusionCriteria.map((item) => {
-    let splitArr = item.split(" - ");
-    const NewQuestion = new Question({
-      general: splitArr[0] === "General" ? true : false,
-      worker: splitArr[0] === "Worker Need" ? true : false,
-      inclusion: false,
-      name: splitArr[1],
-      project: projectId,
-    });
-    NewQuestion.save();
-  });
-});
-
 const model = mongoose.model("Comment", schema);
 
 module.exports = model;

@@ -10,41 +10,41 @@ const bcrypt = require("bcrypt");
 const schema = new mongoose.Schema({
   email: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   fullName: {
     type: String,
-    required: false
+    required: false,
   },
   gender: {
     type: String,
-    required: false
+    required: false,
   },
   dob: {
     type: String,
-    required: false
+    required: false,
   },
   staffId: {
     type: String,
-    required: false
+    required: false,
   },
   healthy: {
     type: String,
-    required: false
+    required: false,
   },
   english: {
     type: String,
-    required: false
+    required: false,
   },
-  isPragnent: {
+  isPregnent: {
     type: Boolean,
     required: false
   },
@@ -62,20 +62,20 @@ const schema = new mongoose.Schema({
   },
   healthy: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 });
 
-schema.methods.hashPassword = async function() {
+schema.methods.hashPassword = async function () {
   this.password = await bcrypt.hash(this.password, 10);
 };
 
-schema.methods.validatePassword = async function(password) {
+schema.methods.validatePassword = async function (password) {
   const validatePassword = await bcrypt.compare(password, this.password);
   return validatePassword;
 };
 
-schema.pre("save", function() {
+schema.pre("save", function () {
   const role = this.role;
   const userId = this._id;
   const name = this.fullName;
@@ -89,7 +89,7 @@ schema.pre("save", function() {
         user: userId,
         name,
         gender,
-        email
+        email,
       });
       newPatient.save();
       break;
@@ -99,7 +99,7 @@ schema.pre("save", function() {
         name,
         gender,
         email,
-        staffId
+        staffId,
       });
       newWorker.save();
       break;
@@ -109,7 +109,7 @@ schema.pre("save", function() {
         name,
         gender,
         email,
-        dob
+        dob,
       });
       newAdmin.save();
       break;

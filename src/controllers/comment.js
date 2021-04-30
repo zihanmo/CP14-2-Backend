@@ -13,7 +13,7 @@ async function leaveComment(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
-    ExclusionCriteria
+    ExclusionCriteria,
   } = req.body;
   const comment = new Comment({
     projectId,
@@ -26,7 +26,7 @@ async function leaveComment(req, res) {
     approvalNumber,
     governance,
     InclusionCriteria,
-    ExclusionCriteria
+    ExclusionCriteria,
   });
   await comment.save();
   return res.json({ comment });
@@ -43,7 +43,18 @@ async function getComments(req, res) {
   }
 }
 
+async function deleteComment(req, res) {
+  const { id } = req.params;
+  const comment = await Comment.findByIdAndDelete(id);
+  if (!comment) {
+    return res.status(404).json("comment not found");
+  }
+
+  return res.json(comment);
+}
+
 module.exports = {
   leaveComment,
-  getComments
+  getComments,
+  deleteComment,
 };
