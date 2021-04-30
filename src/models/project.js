@@ -69,7 +69,7 @@ const schema = new mongoose.Schema({
     },
   ],
 
-  isPragnent: {
+  isPragnant: {
     type: Boolean,
   },
 
@@ -77,7 +77,10 @@ const schema = new mongoose.Schema({
     type: Boolean,
   },
 
-  isLactating: {
+  needEnglish: {
+    type: Boolean,
+  },
+  needHealth: {
     type: Boolean,
   },
 
@@ -85,7 +88,11 @@ const schema = new mongoose.Schema({
     type: Boolean,
   },
 
-  isPlaningPragnent: {
+  isPlaningPragnant: {
+    type: Boolean,
+  },
+
+  workerNeed: {
     type: Boolean,
   },
 
