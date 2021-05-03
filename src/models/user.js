@@ -37,11 +37,11 @@ const schema = new mongoose.Schema({
     required: false,
   },
   healthy: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   english: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   isPregnant: {
