@@ -18,7 +18,7 @@ app.use(errorHandler);
 var fileupload = require("express-fileupload");
 app.use(
   fileupload({
-    useTempFiles: true,
+    useTempFiles: true
   })
 );
 
@@ -27,24 +27,26 @@ var cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: "dzjg12m3b",
   api_key: "518216572745741",
-  api_secret: "8qKRPoZpIIYmdB4CG2kVUgTwqj0",
+  api_secret: "8qKRPoZpIIYmdB4CG2kVUgTwqj0"
 });
 
 connectToDB()
   .then(() => {})
-  .catch((e) => {
+  .catch(e => {
     console.error(e);
     process.exit(1);
   });
 
-app.post("/upload", function (req, res, next) {
+app.get("/", (req, res) => res.send("Welcome to backend"));
+app.post("/upload", function(req, res, next) {
   var data = JSON.parse(req.body.file);
   var image = data.uri;
-  cloudinary.uploader.upload(image, function (err, result) {
+  cloudinary.uploader.upload(image, function(err, result) {
     res.send(result);
   });
 });
 
-app.listen(12345, () => {
+const port = process.env.PORT || 12345;
+app.listen(port, () => {
   console.log("listening");
 });
