@@ -3,8 +3,11 @@
 module.exports = {
   apps: [
     {
-      name: "patient-backend",
-      script: "./src/index.js"
+      name: "patient-web-app",
+      script: "./src/index.js",
+      env_production: {
+        NODE_ENV: "production"
+      }
     }
   ]
 };
