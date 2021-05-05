@@ -6,126 +6,131 @@ const Question = require("./question");
 const schema = new mongoose.Schema({
   userId: {
     type: String,
-    required: false,
+    required: false
   },
 
   title: {
     type: String,
-    required: false,
+    required: false
   },
 
   state: {
     type: String,
-    required: false,
+    required: false
   },
 
   approvalNumber: {
     type: String,
-    required: false,
+    required: false
   },
 
   governance: {
     type: String,
-    required: false,
+    required: false
   },
   createdDate: {
     type: String,
-    required: false,
+    required: false
   },
   fileUpload: {
     type: String,
-    required: false,
+    required: false
   },
 
   description: {
     type: String,
-    required: false,
+    required: false
   },
   location: {
     type: String,
-    required: false,
+    required: false
   },
   subjectNo: {
     type: String,
-    required: false,
+    required: false
   },
   duration: {
     type: String,
-    required: false,
+    required: false
   },
   date: {
     type: String,
-    required: false,
+    required: false
   },
   InclusionCriteria: [
     {
-      type: String,
-    },
+      type: String
+    }
   ],
 
   ExclusionCriteria: [
     {
-      type: String,
-    },
+      type: String
+    }
   ],
 
   isPregnant: {
-    type: Boolean,
+    type: Boolean
   },
 
   isSmoking: {
-    type: Boolean,
+    type: Boolean
   },
 
   needEnglish: {
-    type: Boolean,
+    type: Boolean
   },
   needHealth: {
-    type: Boolean,
+    type: Boolean
   },
 
   isLactating: {
-    type: Boolean,
+    type: Boolean
   },
 
   isPlanningPregnant: {
-    type: Boolean,
+    type: Boolean
   },
 
   workerNeed: {
-    type: Boolean,
+    type: Boolean
   },
 
   gender: {
-    type: String,
+    type: String
   },
 
   ageGroup: {
-    type: String,
-  },
+    type: String
+  }
 });
 
-schema.pre("save", function () {
+schema.pre("save", function() {
   const projectId = this._id;
-  this.InclusionCriteria.map((item) => {
+
+  Question.deleteMany({ project: projectId }, function(err) {
+    console.log(err);
+  });
+
+  this.InclusionCriteria.map(item => {
     let splitArr = item.split(" - ");
     const NewQuestion = new Question({
       general: splitArr[0] === "General" ? true : false,
       worker: splitArr[0] === "Worker Need" ? true : false,
       inclusion: true,
       name: splitArr[1],
-      project: projectId,
+      project: projectId
     });
     NewQuestion.save();
   });
-  this.ExclusionCriteria.map((item) => {
+  this.ExclusionCriteria.map(item => {
     let splitArr = item.split(" - ");
     const NewQuestion = new Question({
       general: splitArr[0] === "General" ? true : false,
       worker: splitArr[0] === "Worker Need" ? true : false,
       inclusion: false,
       name: splitArr[1],
-      project: projectId,
+      project: projectId
     });
     NewQuestion.save();
   });
