@@ -46,7 +46,8 @@ app.post("/upload", function(req, res, next) {
   });
 });
 
-// const port = process.env.PORT || 12345;
-app.listen(12345, () => {
-  console.log("listening");
+const PORT = process.env.PORT || 12345;
+
+app.listen(PORT, () => {
+  console.log(`listening on ${PORT}`);
 });
