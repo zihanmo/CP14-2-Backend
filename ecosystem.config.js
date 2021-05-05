@@ -8,7 +8,7 @@ module.exports = {
       env_production: {
         NODE_ENV: "production",
         JWT_KEY: "mzhmzhmzh",
-        PORT: "12335"
+        PORT: "12345"
       }
     }
   ]
