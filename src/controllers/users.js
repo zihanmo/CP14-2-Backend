@@ -4,44 +4,44 @@ const User = require("../models/user");
 const { generateToken } = require("../utils/jwt");
 
 async function getUserInfo(req, res) {
-    const { id } = req.params;
-    const user = await User.findById(id);
-    if (!user) {
-      return res.status(404).json("User not found");
-    }
-  
-    return res.json(user);
+  const { id } = req.params;
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(404).json("User not found");
+  }
+
+  return res.json(user);
 }
 
 async function updateUserInfo(req, res) {
-    const { id: userID } = req.params;
-    const { 
-        gender,
-        healthy,
-        english,
-        isPregnant,
-        isSmoking,
-        isLactating,
-        isPlanning,
-    } = req.body;
-    const userInfo = await User.findByIdAndUpdate(
-        userID,
-      {
-        gender,
-        healthy,
-        english,
-        isPregnant,
-        isSmoking,
-        isLactating,
-        isPlanning,
-      },
-      { new: true }
-    );
-    if (!userInfo) {
-      return res.status(404).send();
-    }
-    return res.json(userInfo);
+  const { id: userID } = req.params;
+  const {
+    gender,
+    healthy,
+    english,
+    isPregnant,
+    isSmoking,
+    isLactating,
+    isPlanning,
+  } = req.body;
+  const userInfo = await User.findByIdAndUpdate(
+    userID,
+    {
+      gender,
+      healthy,
+      english,
+      isPregnant,
+      isSmoking,
+      isLactating,
+      isPlanning,
+    },
+    { new: true }
+  );
+  if (!userInfo) {
+    return res.status(404).send();
   }
+  return res.json(userInfo);
+}
 
   async function updateUserContact(req, res) {
     const { id: userID } = req.params;
@@ -74,7 +74,7 @@ async function addUser(req, res) {
     staffId,
     healthy,
     english,
-    isPragnant,
+    isPregnant,
     isSmoking,
     isLactating,
     isPlanning,
@@ -95,7 +95,7 @@ async function addUser(req, res) {
     staffId,
     healthy,
     english,
-    isPragnant,
+    isPregnant,
     isSmoking,
     isLactating,
     isPlanning,

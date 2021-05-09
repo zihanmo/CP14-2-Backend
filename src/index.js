@@ -11,16 +11,12 @@ const errorHandler = require("./middleware/errorHandler");
 const app = express();
 
 app.use(cors({ origin: "*" }));
-app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "15mB" }));
 
 app.use("/api", routes);
 app.use(errorHandler);
-var fileupload = require("express-fileupload");
-app.use(
-  fileupload({
-    useTempFiles: true,
-  })
-);
 
 var cloudinary = require("cloudinary").v2;
 
@@ -37,14 +33,15 @@ connectToDB()
     process.exit(1);
   });
 
+app.get("/", (req, res) => res.send("Welcome to backend"));
 app.post("/upload", function (req, res, next) {
-  var data = JSON.parse(req.body.file);
-  var image = data.uri;
-  cloudinary.uploader.upload(image, function (err, result) {
+  cloudinary.uploader.upload(req.body.uri, function (err, result) {
     res.send(result);
   });
 });
 
-app.listen(12345, () => {
-  console.log("listening");
+const PORT = process.env.PORT || 12345;
+
+app.listen(PORT, () => {
+  console.log(`listening on ${PORT}`);
 });

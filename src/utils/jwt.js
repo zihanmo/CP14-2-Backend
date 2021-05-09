@@ -3,7 +3,7 @@
 const jwt = require("jsonwebtoken");
 
 function generateToken(id) {
-  const token = jwt.sign({ id }, process.env.JWT_KEY, {
+  const token = jwt.sign({ id }, "jttjttjtt", {
     expiresIn: "1d"
   });
   return token;
@@ -12,7 +12,7 @@ function generateToken(id) {
 function validateToken(token) {
   let decoded;
   try {
-    decoded = jwt.verify(token, process.env.JWT_KEY);
+    decoded = jwt.verify(token, "jttjttjtt");
   } catch (e) {
     return null;
   }

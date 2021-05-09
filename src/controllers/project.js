@@ -20,12 +20,12 @@ async function addProject(req, res) {
     governance,
     InclusionCriteria,
     ExclusionCriteria,
-    isPragnant,
+    isPregnant,
     isSmoking,
     isLactating,
-    isPlaningPragnant,
+    isPlanningPregnant,
     gender,
-    ageGroup,
+    ageGroup
   } = req.body;
   const project = new Project({
     userId,
@@ -45,12 +45,12 @@ async function addProject(req, res) {
     governance,
     InclusionCriteria,
     ExclusionCriteria,
-    isPragnant,
+    isPregnant,
     isSmoking,
     isLactating,
-    isPlaningPragnant,
+    isPlanningPregnant,
     gender,
-    ageGroup,
+    ageGroup
   });
   await project.save();
   return res.json({ project });
@@ -89,7 +89,7 @@ async function updateState(req, res) {
   const projectState = await Project.findByIdAndUpdate(
     projectId,
     {
-      state,
+      state
     },
     { new: true }
   );
@@ -118,12 +118,12 @@ async function updateAll(req, res) {
     governance,
     InclusionCriteria,
     ExclusionCriteria,
-    isPragnant,
+    isPregnant,
     isSmoking,
     isLactating,
-    isPlaningPragnant,
+    isPlanningPregnant,
     gender,
-    ageGroup,
+    ageGroup
   } = req.body;
   const projectState = await Project.findByIdAndUpdate(
     projectId,
@@ -144,18 +144,23 @@ async function updateAll(req, res) {
       governance,
       InclusionCriteria,
       ExclusionCriteria,
-      isPragnant,
+      isPregnant,
       isSmoking,
       isLactating,
-      isPlaningPragnant,
+      isPlanningPregnant,
       gender,
-      ageGroup,
+      ageGroup
     },
     { new: true }
   );
+  if (projectState) {
+    projectState.save();
+  }
+
   if (!projectState) {
     return res.status(404).send();
   }
+
   return res.json(projectState);
 }
 
@@ -185,5 +190,5 @@ module.exports = {
   deleteProject,
   updateState,
   findProjectSet,
-  updateAll,
+  updateAll
 };

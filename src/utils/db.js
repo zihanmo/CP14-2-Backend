@@ -1,3 +1,5 @@
+/** @format */
+
 const mongoose = require("mongoose");
 
 exports.connectToDB = () => {
@@ -5,5 +7,6 @@ exports.connectToDB = () => {
   return mongoose.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false
   });
 };
