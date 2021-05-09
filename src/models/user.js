@@ -59,6 +59,14 @@ const schema = new mongoose.Schema({
   isPlanning: {
     type: Boolean,
     required: false
+  },
+  contactMethod: {
+    type: String,
+    required: false
+  },
+    phoneNum: {
+    type: String,
+    required: false
   }
 });
 
