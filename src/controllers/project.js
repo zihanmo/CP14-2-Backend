@@ -13,6 +13,7 @@ async function addProject(req, res) {
     needEnglish,
     needHealth,
     date,
+    currentNumParticipant,
     fileUpload,
     workerNeed,
     createdDate,
@@ -25,7 +26,7 @@ async function addProject(req, res) {
     isLactating,
     isPlanningPregnant,
     gender,
-    ageGroup
+    ageGroup,
   } = req.body;
   const project = new Project({
     userId,
@@ -38,6 +39,7 @@ async function addProject(req, res) {
     needEnglish,
     needHealth,
     date,
+    currentNumParticipant,
     fileUpload,
     workerNeed,
     createdDate,
@@ -50,7 +52,7 @@ async function addProject(req, res) {
     isLactating,
     isPlanningPregnant,
     gender,
-    ageGroup
+    ageGroup,
   });
   await project.save();
   return res.json({ project });
@@ -89,7 +91,7 @@ async function updateState(req, res) {
   const projectState = await Project.findByIdAndUpdate(
     projectId,
     {
-      state
+      state,
     },
     { new: true }
   );
@@ -123,7 +125,7 @@ async function updateAll(req, res) {
     isLactating,
     isPlanningPregnant,
     gender,
-    ageGroup
+    ageGroup,
   } = req.body;
   const projectState = await Project.findByIdAndUpdate(
     projectId,
@@ -149,7 +151,7 @@ async function updateAll(req, res) {
       isLactating,
       isPlanningPregnant,
       gender,
-      ageGroup
+      ageGroup,
     },
     { new: true }
   );
@@ -190,5 +192,5 @@ module.exports = {
   deleteProject,
   updateState,
   findProjectSet,
-  updateAll
+  updateAll,
 };
