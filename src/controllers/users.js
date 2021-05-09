@@ -43,6 +43,26 @@ async function updateUserInfo(req, res) {
   return res.json(userInfo);
 }
 
+  async function updateUserContact(req, res) {
+    const { id: userID } = req.params;
+    const { 
+        contactMethod,
+        phoneNum
+    } = req.body;
+    const userInfo = await User.findByIdAndUpdate(
+        userID,
+      {
+        contactMethod,
+        phoneNum
+      },
+      { new: true }
+    );
+    if (!userInfo) {
+      return res.status(404).send();
+    }
+    return res.json(userInfo);
+  }
+
 async function addUser(req, res) {
   const {
     email,
@@ -58,6 +78,8 @@ async function addUser(req, res) {
     isSmoking,
     isLactating,
     isPlanning,
+    contactMethod,
+    phoneNum
   } = req.body;
   const existingUser = await User.findOne({ email }).exec();
   if (existingUser) {
@@ -77,6 +99,8 @@ async function addUser(req, res) {
     isSmoking,
     isLactating,
     isPlanning,
+    contactMethod,
+    phoneNum
   });
   await user.hashPassword();
   await user.save();
@@ -88,4 +112,5 @@ module.exports = {
   addUser,
   getUserInfo,
   updateUserInfo,
+  updateUserContact
 };
