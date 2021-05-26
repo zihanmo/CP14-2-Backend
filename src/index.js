@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({ origin: "*" }));
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: "15mB" }));
+app.use(express.json({ limit: "50mB" }));
 
 app.use("/api", routes);
 app.use(errorHandler);
@@ -35,7 +35,7 @@ connectToDB()
 
 app.get("/", (req, res) => res.send("Welcome to backend"));
 app.post("/upload", function (req, res, next) {
-  cloudinary.uploader.upload(req.body.uri, function (err, result) {
+  cloudinary.uploader.upload(req.body.uri.uri, function (err, result) {
     res.send(result);
   });
 });
