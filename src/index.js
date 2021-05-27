@@ -9,7 +9,13 @@ const { connectToDB } = require("./utils/db");
 var cors = require("cors");
 const errorHandler = require("./middleware/errorHandler");
 const app = express();
-
+const AWS = require("aws-sdk");
+AWS.config.update({
+  accessKeyId: "AKIASOUKMD6CTN3W3CR5",
+  secretAccessKey: "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",
+});
+const { v1: uuidv1, v4: uuidv4 } = require("uuid");
+const s3 = new AWS.S3();
 app.use(cors({ origin: "*" }));
 
 app.use(express.urlencoded({ extended: true }));
@@ -17,14 +23,6 @@ app.use(express.json({ limit: "50mB" }));
 
 app.use("/api", routes);
 app.use(errorHandler);
-
-var cloudinary = require("cloudinary").v2;
-
-cloudinary.config({
-  cloud_name: "dzjg12m3b",
-  api_key: "518216572745741",
-  api_secret: "8qKRPoZpIIYmdB4CG2kVUgTwqj0",
-});
 
 connectToDB()
   .then(() => {})
@@ -35,8 +33,24 @@ connectToDB()
 
 app.get("/", (req, res) => res.send("Welcome to backend"));
 app.post("/upload", function (req, res, next) {
-  cloudinary.uploader.upload(req.body.uri.uri, function (err, result) {
-    res.send(result);
+  const base64Data = req.body.uri.uri;
+  buf = Buffer.from(
+    base64Data.replace(/^data:application\/\w+;base64,/, ""),
+    "base64"
+  );
+  const params = {
+    Bucket: "cp14-2-bucket",
+    Key: uuidv1(),
+    Body: buf,
+    ACL: "public-read",
+    ContentEncoding: "base64", // required
+    ContentType: `application/pdf`,
+  };
+  s3.upload(params, (err, data) => {
+    if (err) {
+      return console.log(err);
+    }
+    res.send(data);
   });
 });
 
