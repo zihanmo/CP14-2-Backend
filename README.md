@@ -28,7 +28,7 @@ npm run dev
 
 5. Update the url in front-end repository 
 ```bash
-src/routes/urlMap.js
+src/routes/urlMap.js/const DEPLOYEDHOST
 ```
 
 ## Frontend Repository
