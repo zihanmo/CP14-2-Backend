@@ -6,7 +6,7 @@ Group 40 capstone project
 Use npm insall to install the package
 
 ```bash
-cd CP14-2
+cd CP14-2-Backend
 npm install
 ```
 
@@ -20,11 +20,11 @@ npm run dev
 
 1. Fork the repository
 
-2. Login to the [Heroku Dashboard](https://dashboard.heroku.com/) and create a new project
+2. Login to the [Heroku Dashboard](https://dashboard.heroku.com/) and create a new project.
 
-3. Connect the project to the repository
+3. Connect the project to the repository.
 
-4. Review your settings and choose Deploy. Your app will now be deployed to a https://xxxxxxxxx.herokuapp.com URL.
+4. Review your settings and choose Deploy. Your app will now be deployed to a https://your-project-name.herokuapp.com URL.
 
 5. Update the url in front-end repository 
 ```bash
