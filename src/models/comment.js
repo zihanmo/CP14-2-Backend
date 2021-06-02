@@ -42,23 +42,23 @@ const schema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  
+
   duration: {
     type: String,
     required: false,
   },
-  
+
   date: {
     type: String,
     required: false,
   },
 
-  InclusionCriteria: {
+  Inclusion: {
     type: String,
     required: false,
   },
 
-  ExclusionCriteria: {
+  Exclusion: {
     type: String,
     required: false,
   }

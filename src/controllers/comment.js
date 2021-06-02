@@ -12,8 +12,8 @@ async function leaveComment(req, res) {
     date,
     approvalNumber,
     governance,
-    InclusionCriteria,
-    ExclusionCriteria,
+    Inclusion,
+    Exclusion,
   } = req.body;
   const comment = new Comment({
     projectId,
@@ -25,8 +25,8 @@ async function leaveComment(req, res) {
     date,
     approvalNumber,
     governance,
-    InclusionCriteria,
-    ExclusionCriteria,
+    Inclusion,
+    Exclusion,
   });
   await comment.save();
   return res.json({ comment });
