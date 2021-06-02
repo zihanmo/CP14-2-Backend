@@ -11,8 +11,8 @@ const errorHandler = require("./middleware/errorHandler");
 const app = express();
 const AWS = require("aws-sdk");
 AWS.config.update({
-  accessKeyId: "AKIA5DQGEK7OXVRC3UM4",
-  secretAccessKey: "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",
+  accessKeyId: "AKIASOUKMD6C7J5SKGTI",
+  secretAccessKey: "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",
 });
 const { v1: uuidv1, v4: uuidv4 } = require("uuid");
 const s3 = new AWS.S3();
@@ -39,7 +39,7 @@ app.post("/upload", function (req, res, next) {
     "base64"
   );
   const params = {
-    Bucket: "my-cp-14-2",
+    Bucket: "cp14-2-bucket",
     Key: uuidv1(),
     Body: buf,
     ACL: "public-read",
