@@ -31,6 +31,32 @@ npm run dev
 src/routes/urlMap.js/const DEPLOYEDHOST
 ```
 
+## File uploading AWS S3 configuration
+
+Step 1: create a new security credential or use your existing one.
+
+Step 2: Create a new bucket for S3 service. Remember to untick “Block all public access” when creating it.
+
+Step 3:  Open a Terminal in your project's folder and run:
+```bash
+npm i aws-sdk 
+```
+
+Step 4: Go to index.js file, replace your own access Key, secrete key and bucket name
+
+```python
+
+AWS.config.update({
+  accessKeyId: "YOUR_SECRET_KEY",
+  secretAccessKey: "YOUR_ACCESS_KEY",
+});
+
+...
+const params = {
+    Bucket: "YOUR_BUCKET_NAME",
+    ...
+  };
+```
 ## Frontend Repository
 [Frontend](https://github.com/zwan2204/CP14-2)
 
