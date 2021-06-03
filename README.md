@@ -33,7 +33,7 @@ src/routes/urlMap.js/const DEPLOYEDHOST
 
 ## File uploading AWS S3 configuration
 
-Step 1: create a new security credential or use your existing one.
+Step 1: create a new security credential or use your existing one. Your will get access key and secret key.
 
 Step 2: Create a new bucket for S3 service. Remember to untick “Block all public access” when creating it.
 
