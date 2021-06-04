@@ -57,6 +57,11 @@ const params = {
     ...
   };
 ```
+## Database 
+[Mongodb Atlas](https://cloud.mongodb.com/v2/6059c88b08a6b63c05ed59fc#clusters)
+1. Register an Mongodb accound 
+2. Ask us to add the account to the database.
+
 ## Frontend Repository
 [Frontend](https://github.com/zwan2204/CP14-2)
 
