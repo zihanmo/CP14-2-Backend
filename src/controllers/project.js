@@ -1,6 +1,6 @@
 /** @format */
 const Project = require("../models/project");
-
+const Question =require("../models/question")
 async function addProject(req, res) {
   const {
     userId,
@@ -77,7 +77,8 @@ async function getProjects(req, res) {
 
 async function deleteProject(req, res) {
   const { id } = req.params;
-  const project = await Project.findByIdAndDelete(id);
+  const project = await Project.findByIdAndRemove(id);
+  const question = await Question.remove({ project: id });
   if (!project) {
     return res.status(404).json("project not found");
   }
