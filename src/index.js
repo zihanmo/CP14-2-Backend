@@ -11,8 +11,8 @@ const errorHandler = require("./middleware/errorHandler");
 const app = express();
 const AWS = require("aws-sdk");
 AWS.config.update({
-  accessKeyId: "YOUR_SECRET_KEY",
-  secretAccessKey: "YOUR_ACCESS_KEY",
+  accessKeyId: "YOUR_ACCESS_KEY",
+  secretAccessKey: "YOUR_SECRET_KEY",
 });
 const { v1: uuidv1, v4: uuidv4 } = require("uuid");
 const s3 = new AWS.S3();
