@@ -47,8 +47,8 @@ Step 4: Go to index.js file, replace your own access Key, secrete key and bucket
 ```python
 
 AWS.config.update({
-  accessKeyId: "YOUR_SECRET_KEY",
-  secretAccessKey: "YOUR_ACCESS_KEY",
+  accessKeyId: "YOUR_ACCESS_KEY",
+  secretAccessKey: "YOUR_SECRET_KEY",
 });
 
 ...
